@@ -1,19 +1,17 @@
 #IPND STAGE 2 FINAL
 #MADLIBS GENERATOR
-#sample='The word model is often tossed around the business world, evoking complicated and intimidating visual images to those unfamiliar with them. But instead of depending on your friend with an MBA to back you up, any business owner can and should know the basics of financial modeling.So what is a financial model exactly?A model is a means of predicting the future, and like a meteorologist forecasting rain, a financial model is really just a volatile "best guess" that should be updated frequently.  Models take a set of assumptions (and sometimes your business\'s performance history) and forecast a future state. Even though they are predictions, models provide a good benchmark and can help run "what-if" scenarios so you are prepared for any situation.
-#"credit for resource: https://www.paro.io/blog/how-to-build-a-basic-financial-model"
 
+#"credit for resource for sample: https://www.codeconquest.com/what-is-coding/how-does-coding-work/"
 """
 steps to solving the problem
 Step 1:
-welcome, greet and introduce(advance offer options)
+welcome, greet and introduce
 
 Step 2:
-Tell them the number of inputs to be filled and allow them to choose the number of times they can answer 
-before game over
+Ask them to choose a question(game option) and fill in the blanks
 
 Step 3:
-ask a question and save the question in a variable
+ask a question and save the answer in a variable
 
 Step 4:
 i. check the answer.
@@ -25,29 +23,12 @@ check if the answer is wrong repeat the question and repeat number 4.
 step 6:
 Move on to next question.
 
-PSEUDOCODE
-def ask_question:
-	ask a question and save the question in a variable
-	return question
-
-def check_answer(answer):
-	check the answer.
-	return ...
-
-if check_answer(answer):
-	string.replace(word, answer)
-
-if not check_answer(answer):
-	check if the answer is wrong repeat the question and repeat number 4.
-
-
-
 """
-blank_spaces = ["__1__","__2__", "__3__"]
+blank_spaces = ["__1__","__2__", "__3__", "__4__", "__5__"]
 
-easy ="The __1__ model is often __2__ around the business world, evoking complicated and intimidating visual __3__ to those unfamiliar with them."
+easy ="So how does __1__ work, really? The short answer is that __2__ code __3__ the __4__ what to do, but it's not __5__ that simple."
 
-medium = "A hobby is a __1__ activity that is __2__ for enjoyment, typically __3__ one's leisure time."
+medium = "So here's the longer answer. A __1__ can only understand two __2__ types of data: on and off. In fact, a computer is really just a __3__ of on/off switches (transistors). Anything that a computer can do is nothing more than a __4__ combination of some __5__ turned on and some transistors turned off."
 
 hard ="Hobbies can __1__ collecting themed items and objects, engaging in __2__ and artistic pursuits, playing sports, or __3__ other amusements."
 
@@ -59,8 +40,8 @@ game_level_options = {
 					}
 
 
-easy_answers = ["word", "tossed", "images"]
-medium_answers = ["regular", "done", "during"],
+easy_answers = ["coding", "writing", "tells", "computer", "quite"]
+medium_answers =["computer", "distinct", "combination", "unique", "transistors"]
 hard_answers = ["include", "creative", "pursuing"]	
 
 
@@ -71,7 +52,7 @@ def welcome_user():
 		welcome_user()
 	else:
 		print "Hello " + name+ "!, welcome to fill-in-the-blanks game."
-		print "This is aimed at testing how well you understand your business lessons.\nSelect a game level by choosing an option, which includes:\n\neasy, medium and hard.\n"
+		print "This is aimed at testing how well you understand how coding works.\nSelect a game level by choosing an option, which includes:\n\neasy, medium and hard.\n"
 		
 
 
@@ -105,12 +86,13 @@ def question_answer(question):
 def check_answer(response, blank, question):
 	
 	position = blank_spaces.index(blank)
-	# print str(position) + "This is it :"
+	print str(position) + "This is it :"
 	# print question
 	# answers = question_answer(question)
-	
+	print answer_to_question
 	answer = answer_to_question[position]
-	# print "answer answer ", answer
+	print answer[0]
+	print "answer answer ", answer
 	if response == answer:
 		return True
 	return None
@@ -126,13 +108,14 @@ def begin_game(test_sample, blank):
 		# if replacement != None:
 			user_input = raw_input("What should be substituted in for " + blank + "?: ").lower()
 			response = check_answer(user_input, blank, test_sample)
-			
+			print response, "first"
 			if response != None:
 				print "Correct, you are right"
 				word = word.replace(blank, user_input)
 				replaced.append(word)
 			while response == None:
 				print "Wrong answer, try again"
+				print response, "second"
 				begin_game(test_sample, blank)
 				break
 				print response, "third response"
