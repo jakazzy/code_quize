@@ -30,7 +30,7 @@ easy ="So how does __1__ work, really? The short answer is that __2__ code __3__
 
 medium = "So here's the longer answer. A __1__ can only understand two __2__ types of data: on and off. In fact, a computer is really just a __3__ of on/off switches (transistors). Anything that a computer can do is nothing more than a __4__ combination of some __5__ turned on and some transistors turned off."
 
-hard ="Hobbies can __1__ collecting themed items and objects, engaging in __2__ and artistic pursuits, playing sports, or __3__ other amusements."
+hard ="Binary code is the __1__ of these combinations as 1s and 0s, where each __2__ represents one __3__. Binary code is grouped into bytes, groups of 8 digits representing 8 transistors. For example, 11101001. Modern __4__ contain millions or even billions of transistors, which means an __5__ large number of combinations."
 
 
 game_level_options = {
@@ -42,7 +42,7 @@ game_level_options = {
 
 easy_answers = ["coding", "writing", "tells", "computer", "quite"]
 medium_answers =["computer", "distinct", "combination", "unique", "transistors"]
-hard_answers = ["include", "creative", "pursuing"]	
+hard_answers = ["representation", "digit", "transistor", "computers", "unimaginably"]	
 
 
 def welcome_user():
@@ -112,7 +112,9 @@ def begin_game(test_sample, blank):
 			if response != None:
 				print "Correct, you are right"
 				word = word.replace(blank, user_input)
+				print word, "this is word"
 				replaced.append(word)
+				print replaced, "this is replaced"
 			while response == None:
 				print "Wrong answer, try again"
 				print response, "second"
@@ -124,13 +126,15 @@ def begin_game(test_sample, blank):
 		else:
 			replaced.append(word)
 	replaced = " ".join(replaced)
+	print replaced,"\n" 
 	return replaced
+
 
 
 def word_in_blankspace(blank_space,test_sample):
 	for blank in blank_space:
 		test_sample =begin_game(test_sample, blank)
-		print test_sample
+		# print test_sample
 		# return result
         # if blank in word:
         #     return blank
@@ -167,7 +171,7 @@ answer =ask_game_level()
 print "-"*80
 test_sample =game_level_options[answer]
 answer_to_question =question_answer(test_sample)
-print word_in_blankspace(blank_spaces, test_sample) 
+word_in_blankspace(blank_spaces, test_sample) 
 print "-"*80
 print "Congratulations, you won"
 # chosen_game(game_option)
