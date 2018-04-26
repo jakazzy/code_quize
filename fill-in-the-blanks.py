@@ -43,6 +43,160 @@ if not check_answer(answer):
 
 
 """
+blank_spaces = ["__1__","__2__", "__3__"]
+
+easy ="The __1__ model is often __2__ around the business world, evoking complicated and intimidating visual __3__ to those unfamiliar with them."
+
+medium = "A hobby is a __1__ activity that is __2__ for enjoyment, typically __3__ one's leisure time."
+
+hard ="Hobbies can __1__ collecting themed items and objects, engaging in __2__ and artistic pursuits, playing sports, or __3__ other amusements."
+
+
+game_level_options = {
+						"easy" : easy,
+						"medium" : medium,
+						"hard" : hard
+					}
+
+
+easy_answers = ["word", "tossed", "images"]
+medium_answers = ["regular", "done", "during"],
+hard_answers = ["include", "creative", "pursuing"]	
+
+
+def welcome_user():
+	name = raw_input("What's your name?: ")
+	if name == "":
+		print "Kindly fill name in your name."
+		welcome_user()
+	else:
+		print "Hello " + name+ "!, welcome to fill-in-the-blanks game."
+		print "This is aimed at testing how well you understand your business lessons.\nSelect a game level by choosing an option, which includes:\n\neasy, medium and hard.\n"
+		
+
+
+def ask_game_level():
+	game_option =raw_input("Choose an option: ")
+	game_option = game_option.lower()
+	if game_option in game_level_options:
+		print "you have chosen the" + " "+ game_option + " option"
+		print "You will get 5 guesses per problem.\n The paragraph reads as such:"
+		print "-"*80
+		print game_level_options[game_option]
+		return game_option
+	while game_option not in game_level_options:
+		print "That's not an option!\nPlease select a game difficulty by choosing one!\n(easy, medium, and hard)."
+		ask_game_level()
+
+
+def question_answer(question):
+	if question == easy:
+		answer = easy_answers
+		return answer
+	if question == medium:
+		answer = medium_answers
+		return answer
+	if question == hard:
+		answer = hard_answers
+		return answer
+
+# answer_to_question =question_answer(test_sample)
+ 
+def check_answer(response, blank, question):
+	
+	position = blank_spaces.index(blank)
+	# print str(position) + "This is it :"
+	# print question
+	# answers = question_answer(question)
+	
+	answer = answer_to_question[position]
+	# print "answer answer ", answer
+	if response == answer:
+		return True
+	return None
+
+def begin_game(test_sample, blank):    
+	replaced = []
+	statement = test_sample.split()
+	
+	for word in statement:
+		if blank == word:
+			
+		# replacement = word_in_blankspace(word, blank)
+		# if replacement != None:
+			user_input = raw_input("What should be substituted in for " + blank + "?: ").lower()
+			response = check_answer(user_input, blank, test_sample)
+			
+			if response != None:
+				print "Correct, you are right"
+				word = word.replace(blank, user_input)
+				replaced.append(word)
+			while response == None:
+				print "Wrong answer, try again"
+				begin_game(test_sample, blank)
+				break
+				print response, "third response"
+				# user_input = raw_input("What should be substituted in for " + blank + "?: ")
+				
+		else:
+			replaced.append(word)
+	replaced = " ".join(replaced)
+	return replaced
+
+
+def word_in_blankspace(blank_space,test_sample):
+	for blank in blank_space:
+		test_sample =begin_game(test_sample, blank)
+		print test_sample
+		# return result
+        # if blank in word:
+        #     return blank
+    # return None
+
+
+       
+# Plays a full game of mad_libs. A player is prompted to replace words in ml_string, 
+# which appear in parts_of_speech with their own words.  
+
+    
+ 
+
+
+# game_level_and_answers = {
+# 	"easy":[first_sample,["word", "tossed", "images"]],
+# 	"medium":[second_sample,["regular", "done", "during"]],
+# 	"hard":[third_sample,["include", "creative", "pursuing"]]
+
+# }
+
+# def chosen_game(game):
+# 	for key in enumerate(game_level_and_answers):
+# 		if key == game_option:
+# 			note =game_level_and_answers[key][0]
+# 			print note
+# 		if game_option not in game_level_and_answers:
+# 			print "That's not an option"
+# 			game_option =raw_input("Choose an option: ")
+
+welcome_user()
+answer =ask_game_level()
+
+print "-"*80
+test_sample =game_level_options[answer]
+answer_to_question =question_answer(test_sample)
+print word_in_blankspace(blank_spaces, test_sample) 
+print "-"*80
+print "Congratulations, you won"
+# chosen_game(game_option)
+
+# for blank in blank_spaces:
+# 	if blank in first_sample:
+# 		print blank
+
+
+'''
+SECOND SOLUTION
+
 name = raw_input("What's your name?: ")
 welcome= "Hello " + name+ "!, welcome to fill-in-the-blanks game."
 
@@ -151,6 +305,9 @@ print "credit for resource for quize: https://www.paro.io/blog/how-to-build-a-ba
 # answers = ['lancelot', 'the holy grail', 'blue']
 # for q, a in zip(questions, answers):
 # 	print 'What is your name?  It is {__1__}.'.format(a)
+
+
+'''
 
 '''
 SOLUTION 1
