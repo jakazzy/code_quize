@@ -44,8 +44,15 @@ easy_answers = ["coding", "writing", "tells", "computer", "quite"]
 medium_answers =["computer", "distinct", "combination", "unique", "transistors"]
 hard_answers = ["representation", "digit", "transistor", "computers", "unimaginably"]	
 
+#auxilliary functions
 
 def welcome_user():
+	"""input : Empty
+
+	Behaviour: Accepts input for the username and  asks again when n user name is given
+
+	output: Print out a welcome statement for the user and tells user to select a level. 
+	"""
 	name = raw_input("What's your name?: ")
 	if name == "":
 		print "Kindly fill name in your name."
@@ -57,6 +64,12 @@ def welcome_user():
 
 
 def ask_game_level():
+	"""Input : Empty
+
+	Behaviour : Prompts user to choose a game level(game option) and checks if the game level is right
+
+	Output : Returns the level  chosen by user.
+	"""
 	game_option =raw_input("Choose an option: ")
 	game_option = game_option.lower()
 	if game_option in game_level_options:
@@ -71,6 +84,12 @@ def ask_game_level():
 
 
 def question_answer(question):
+	"""Input : question(str) or game option selected by the user
+
+	Behaviour: checks the corresponding answer to the question
+
+	Output: Returns corresponding answer for the question selected(game option)
+	"""
 	if question == easy:
 		answer = easy_answers
 		return answer
@@ -84,7 +103,12 @@ def question_answer(question):
 # answer_to_question =question_answer(test_sample)
  
 def check_answer(response, blank, question):
-	
+	"""Input: response(str) obtained from user as user_input, blank(str), question(str)
+
+	Behaviour: Checks the validity of an answer
+
+	Output: Returns True if answer is valid or None if not valid
+	"""
 	position = blank_spaces.index(blank)
 	print str(position) + "This is it :"
 	# print question
@@ -97,7 +121,15 @@ def check_answer(response, blank, question):
 		return True
 	return None
 
-def begin_game(test_sample, blank):    
+def begin_game(test_sample, blank):
+"""Input: test_sample(str)/game option chosen by user and a blank(str) from blank_spaces
+
+Behaviour: splits the test_sample into a list and checks if it is a blank.
+Accepts user_input and checks if it is right.
+Then replaces the blank in the test_sample with user input if right
+
+Output: Returns replaced(str) with a blank replaced. 
+"""    
 	replaced = []
 	statement = test_sample.split()
 	
@@ -132,6 +164,10 @@ def begin_game(test_sample, blank):
 
 
 def word_in_blankspace(blank_space,test_sample):
+	"""Input: blank_space, test_sample
+
+	Behaviour: A blank from blank_spaces is taken and the function begin_game called on it. 
+	"""
 	for blank in blank_space:
 		test_sample =begin_game(test_sample, blank)
 		# print test_sample
