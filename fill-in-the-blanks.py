@@ -71,20 +71,16 @@ def ask_game_level():
 	Output : Returns the level  chosen by user.
 	"""
 	game_option =raw_input("Choose an option: ").lower()
-	print game_option, "why this?"
 	if game_option in game_level_options:
 		print "you have chosen the" + " "+ game_option + " option"
 		print "You will get 5 guesses per problem.\nThe paragraph reads as such:"
 		print "-"*80
 		# print game_level_options[game_option]
-		print game_option, "why is it none"
 		return game_option
 	# while game_option not in game_level_options:
 	else:
-		print game_option, "whats happening?"
 		print "That's not an option!\nPlease select a game difficulty by choosing one!\n(easy, medium, and hard)."
 		game_option = ask_game_level()
-		print game_option, "let me check"
 		return game_option
 
 
@@ -150,7 +146,7 @@ def begin_game(test_sample, blank):
 		else:
 			replaced.append(word)
 	replaced = " ".join(replaced)
-	# print replaced,"\n", "take this out?"
+	print replaced,"\n"
 	return replaced
 
 
@@ -164,7 +160,6 @@ def word_in_blankspace(blank_space,test_sample):
 	"""
 	for blank in blank_space:
 		test_sample =begin_game(test_sample, blank)
-		print test_sample
 	return test_sample
 
 
@@ -174,11 +169,11 @@ def word_in_blankspace(blank_space,test_sample):
 
 welcome_user()
 answer =ask_game_level()
-print answer, "this is none******************"
+print answer
 
 print "-"*80
 test_sample =game_level_options[answer]
-print test_sample, "*******************"
+print test_sample
 answer_to_question =question_answer(test_sample)
 word_in_blankspace(blank_spaces, test_sample) 
 print "-"*80
